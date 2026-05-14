@@ -17,11 +17,26 @@ export default function Navbar() {
   return (
     <nav className="fixed top-0 left-0 right-0 z-[100] bg-white/80 backdrop-blur-md border-b border-slate-200">
       <div className="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-3">
           <div className="w-8 h-8 bg-emerald-600 rounded flex items-center justify-center font-bold text-white text-xl">
             J
           </div>
           <span className="font-mono font-bold tracking-tighter hidden sm:block text-slate-900">JOHN ROSE</span>
+
+          {/* System health badge */}
+          <span
+            className="hidden sm:inline-flex items-center gap-1.5 pl-1.5 pr-2.5 py-1 rounded-full border border-slate-200 bg-white/80 backdrop-blur-sm"
+            aria-label="System status: operational"
+            title="System status: operational"
+          >
+            <span className="relative inline-flex w-2 h-2">
+              <span className="absolute inset-0 rounded-full bg-emerald-500 opacity-70 animate-ping" />
+              <span className="relative inline-flex w-2 h-2 rounded-full bg-emerald-500" />
+            </span>
+            <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-slate-600">
+              SYS / OPERATIONAL
+            </span>
+          </span>
         </div>
 
         {/* Desktop Nav */}

@@ -14,13 +14,21 @@ import {
   ShieldCheck,
   MessageSquare,
   Network,
+  Code2,
 } from "lucide-react";
 import { ZoomableDiagram } from "./diagram/ZoomableDiagram";
+import { PythonCodeWindow } from "./code/PythonCodeWindow";
 
 type DeepDive = {
   title: string;
   body: string;
   icon: typeof Shield;
+};
+
+type CodeSnippet = {
+  label: string;
+  filename: string;
+  source: string;
 };
 
 type Project = {
@@ -34,6 +42,7 @@ type Project = {
   badge: string;
   deepDives: DeepDive[];
   diagram: string;
+  codeSnippet?: CodeSnippet;
 };
 
 const projects: Project[] = [
@@ -138,11 +147,35 @@ const projects: Project[] = [
     style LangGraph fill:#f0fdf4,stroke:#16a34a,stroke-width:2px
     style HITL fill:#fef3c7,stroke:#b45309,stroke-width:2px
 `,
+    codeSnippet: {
+      label: "View Ingestion Middleware",
+      filename: "infrastructure/security/scrubber.py",
+      source: `# infrastructure/security/scrubber.py
+import spacy
+from typing import Dict, Any
+
+class PIIScrubber:
+    def __init__(self):
+        self.nlp = spacy.load("en_core_web_sm")
+        self.target_labels = {"PERSON", "EMAIL", "PHONE", "GPE"}
+
+    def redact_patient_state(self, state: Dict[str, Any]) -> Dict[str, Any]:
+        raw_text = state.get("patient_message", "")
+        doc = self.nlp(raw_text)
+        sanitized_text = raw_text
+        for ent in sorted(doc.ents, key=lambda e: e.start_char, reverse=True):
+            if ent.label_ in self.target_labels:
+                sanitized_text = sanitized_text[:ent.start_char] + f"[{ent.label_}_REDACTED]" + sanitized_text[ent.end_char:]
+        state["sanitized_message"] = sanitized_text
+        return state
+`,
+    },
   },
 ];
 
 function ProjectCard({ project, index }: { project: Project; index: number }) {
   const [expanded, setExpanded] = useState(false);
+  const [showCode, setShowCode] = useState(false);
 
   return (
     <motion.article
@@ -324,6 +357,58 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
                   {/* Zoomable diagram canvas */}
                   <ZoomableDiagram source={project.diagram} />
                 </div>
+
+                {/* Behind-the-code toggle — only on projects with a code snippet */}
+                {project.codeSnippet && (
+                  <div className="mt-6">
+                    <div className="flex justify-center">
+                      <button
+                        type="button"
+                        onClick={() => setShowCode((v) => !v)}
+                        aria-expanded={showCode}
+                        aria-controls={`code-${index}`}
+                        className={[
+                          "inline-flex items-center gap-2 px-4 py-2 rounded-lg font-mono text-xs uppercase tracking-[0.2em] transition-all border",
+                          showCode
+                            ? "bg-slate-900 text-emerald-300 border-slate-900 shadow-[0_8px_20px_-10px_rgba(15,23,42,0.5)]"
+                            : "bg-white text-slate-700 border-slate-200 hover:border-emerald-500/60 hover:text-emerald-700 hover:bg-emerald-50/40",
+                        ].join(" ")}
+                      >
+                        <Code2 className="w-3.5 h-3.5" strokeWidth={2.25} />
+                        <span className="font-mono">&lt;/&gt;</span>
+                        {showCode ? "Hide Source" : project.codeSnippet.label}
+                        <motion.span
+                          animate={{ rotate: showCode ? 180 : 0 }}
+                          transition={{ type: "spring", stiffness: 220, damping: 20 }}
+                          className="inline-flex"
+                        >
+                          <ChevronDown className="w-3.5 h-3.5" strokeWidth={2.5} />
+                        </motion.span>
+                      </button>
+                    </div>
+
+                    <AnimatePresence initial={false}>
+                      {showCode && (
+                        <motion.div
+                          key="code"
+                          id={`code-${index}`}
+                          initial={{ height: 0, opacity: 0 }}
+                          animate={{ height: "auto", opacity: 1 }}
+                          exit={{ height: 0, opacity: 0 }}
+                          transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+                          className="overflow-hidden"
+                        >
+                          <div className="pt-5">
+                            <PythonCodeWindow
+                              filename={project.codeSnippet.filename}
+                              source={project.codeSnippet.source}
+                            />
+                          </div>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  </div>
+                )}
               </div>
             </div>
           </motion.section>

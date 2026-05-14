@@ -11,6 +11,7 @@ import TechnicalDeepDive from "./components/TechnicalDeepDive";
 import TheStack from "./components/TheStack";
 import Experience from "./components/Experience";
 import OperationalBreakthroughs from "./components/OperationalBreakthroughs";
+import ValueChampionBanner from "./components/ValueChampionBanner";
 import Philosophy from "./components/Philosophy";
 import Contact from "./components/Contact";
 import { Github, Linkedin, Mail } from "lucide-react";
@@ -23,6 +24,7 @@ export default function App() {
       <main>
         <Hero />
         <OperationalBreakthroughs />
+        <ValueChampionBanner />
         <ProjectCards />
         <IndependentProjects />
         <TechnicalDeepDive />
