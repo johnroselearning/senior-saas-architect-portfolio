@@ -56,12 +56,12 @@ const studies: CaseStudy[] = [
     ],
   },
   {
-    id: "medical-triage",
-    project: "Medical Triage",
+    id: "triagepulse-ai",
+    project: "TriagePulse AI",
     subheading: "Deterministic Agentic Orchestration for Clinical Safety",
     tags: ["Python", "LangGraph", "FastAPI", "WhatsApp API", "MongoDB"],
     icon: Stethoscope,
-    accent: "Agentic Health-Tech SaaS",
+    accent: "Medical Triage SaaS",
     dives: [
       {
         id: "orchestration",

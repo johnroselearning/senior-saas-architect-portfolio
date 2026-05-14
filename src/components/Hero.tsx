@@ -37,10 +37,12 @@ export default function Hero() {
         </h1>
 
         <p className="text-lg md:text-xl text-slate-600 mb-6 max-w-3xl mx-auto leading-relaxed">
-          Senior Software Engineer specializing in{" "}
+          Senior Engineer specializing in{" "}
           <span className="text-slate-900 font-medium">high-concurrency backends</span>,{" "}
-          <span className="text-slate-900 font-medium">Fintech security</span>, and{" "}
-          <span className="text-slate-900 font-medium">AI orchestration</span>.
+          <span className="text-slate-900 font-medium">cloud infrastructure</span>, and{" "}
+          <span className="text-slate-900 font-medium">intelligent automation</span>. Building
+          world-class, resilient layers that resolve complex production anomalies before they
+          impact the user.
         </p>
 
         <blockquote className="relative mx-auto max-w-2xl mb-10 px-6">

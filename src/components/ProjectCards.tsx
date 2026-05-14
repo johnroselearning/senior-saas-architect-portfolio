@@ -15,7 +15,7 @@ import {
   MessageSquare,
   Network,
 } from "lucide-react";
-import { MermaidDiagram } from "./diagram/MermaidDiagram";
+import { ZoomableDiagram } from "./diagram/ZoomableDiagram";
 
 type DeepDive = {
   title: string;
@@ -88,8 +88,8 @@ const projects: Project[] = [
 `,
   },
   {
-    title: "Project Anti-Gravity",
-    tagline: "Health-Tech SaaS · Multi-Tenant",
+    title: "TriagePulse AI",
+    tagline: "Health-Tech SaaS · Multi-Tenant | TriagePulse AI",
     description:
       "A multi-tenant medical triage system utilizing a stateful multi-agent architecture.",
     tags: ["LangGraph", "FastAPI", "WhatsApp Business API"],
@@ -264,14 +264,14 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
             transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
             className="overflow-hidden border-t border-slate-200 bg-slate-50/40"
           >
-            <div className="p-8 md:p-10 grid grid-cols-1 lg:grid-cols-5 gap-8">
-              {/* LEFT — Deep dive bullets */}
-              <div className="lg:col-span-2 space-y-5">
+            <div className="p-6 md:p-8 flex flex-col">
+              {/* TOP — Deep dive bullets (full width) */}
+              <div className="space-y-5">
                 <p className="text-[10px] font-mono uppercase tracking-[0.3em] text-emerald-700 flex items-center gap-2">
                   <Network className="w-3 h-3" /> Architectural Deep Dives
                 </p>
 
-                <ul className="space-y-5">
+                <ul className="grid grid-cols-1 md:grid-cols-3 gap-4">
                   {project.deepDives.map((d, i) => (
                     <motion.li
                       key={d.title}
@@ -299,15 +299,18 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
                 </ul>
               </div>
 
-              {/* RIGHT — Mermaid diagram */}
-              <div className="lg:col-span-3">
-                <p className="text-[10px] font-mono uppercase tracking-[0.3em] text-emerald-700 mb-3 flex items-center gap-2">
+              {/* Divider between text and diagram */}
+              <div className="border-t border-slate-200 my-8" />
+
+              {/* BOTTOM — Mermaid diagram (centered, max-width) */}
+              <div className="w-full max-w-3xl mx-auto">
+                <p className="text-[10px] font-mono uppercase tracking-[0.3em] text-emerald-700 mb-3 flex items-center justify-center gap-2 text-center">
                   <Cpu className="w-3 h-3" /> System Architecture
                 </p>
 
-                <div className="relative rounded-xl border border-slate-200 bg-white shadow-[0_1px_2px_rgba(15,23,42,0.04)] overflow-hidden">
+                <div className="relative rounded-xl border border-slate-200 bg-slate-50/80 shadow-[0_1px_2px_rgba(15,23,42,0.04)] overflow-hidden">
                   {/* Window chrome */}
-                  <div className="flex items-center justify-between px-4 py-2 border-b border-slate-200 bg-slate-50">
+                  <div className="flex items-center justify-between px-4 py-2 border-b border-slate-200 bg-slate-100/70">
                     <div className="flex items-center gap-1.5">
                       <span className="w-2.5 h-2.5 rounded-full bg-slate-300" />
                       <span className="w-2.5 h-2.5 rounded-full bg-slate-300" />
@@ -318,18 +321,8 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
                     </span>
                   </div>
 
-                  {/* Diagram canvas with faint dot grid */}
-                  <div
-                    className="p-4 md:p-6"
-                    style={{
-                      backgroundColor: "#ffffff",
-                      backgroundImage:
-                        "radial-gradient(circle, #e2e8f0 1px, transparent 1px)",
-                      backgroundSize: "18px 18px",
-                    }}
-                  >
-                    <MermaidDiagram source={project.diagram} />
-                  </div>
+                  {/* Zoomable diagram canvas */}
+                  <ZoomableDiagram source={project.diagram} />
                 </div>
               </div>
             </div>
@@ -350,7 +343,7 @@ export default function ProjectCards() {
               <Rocket className="w-3.5 h-3.5" /> Primary Technical Focus
             </p>
             <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-slate-900">
-              Core Architecture &amp; AI Systems
+              Core Infrastructure &amp; AI Solutions
             </h2>
           </div>
           <p className="text-slate-600 max-w-md text-sm leading-relaxed">

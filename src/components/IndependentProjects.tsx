@@ -30,7 +30,7 @@ export default function IndependentProjects() {
               Venture &amp; Community Platforms
             </p>
             <h2 className="text-2xl md:text-3xl font-bold tracking-tight text-slate-900">
-              Selected Independent Projects
+              Strategic &amp; Community Solutions
             </h2>
           </div>
           <div className="hidden md:block h-px w-32 bg-gradient-to-r from-emerald-500/60 to-transparent" />

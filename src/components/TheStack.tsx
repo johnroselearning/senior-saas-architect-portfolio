@@ -24,10 +24,10 @@ const stackItems: {
     ],
   },
   {
-    category: "Programming & APIs",
+    category: "Programming, Cloud & APIs",
     icon: Code2,
     color: "text-blue-600",
-    caption: "Shipped Python automation across two SaaS platforms",
+    caption: "Engineering automated infrastructure across distributed environments",
     skills: [
       { name: "Python", score: 90 },
       { name: "REST APIs (Postman)", score: 90 },

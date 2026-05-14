@@ -162,7 +162,9 @@ export default function Contact() {
       <div className="max-w-4xl mx-auto">
         <h2 className="text-4xl font-bold mb-6">Let's solve the hard problems together.</h2>
         <p className="text-xl mb-12 opacity-90 font-medium">
-          Open to senior support, GenAI debugging, and incident management roles.
+          Open to Senior Product Support, GenAI/Agentic Systems Engineering, and Cloud
+          Infrastructure roles where high availability, automation, and complex system
+          debugging intersect.
         </p>
 
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
