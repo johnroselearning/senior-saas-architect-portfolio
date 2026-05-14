@@ -77,3 +77,20 @@
 .text-gradient-emerald {
   @apply bg-clip-text text-transparent bg-gradient-to-r from-emerald-600 to-emerald-400;
 }
+
+/* Technical blueprint dot-matrix overlay — used on the off-white #F8FAFC base */
+.bg-dot-matrix {
+  background-color: #f8fafc;
+  background-image: radial-gradient(circle, #cbd5e1 1px, transparent 1px);
+  background-size: 22px 22px;
+  background-position: 0 0;
+}
+
+/* Soft fade so the dot grid doesn't compete with content */
+.bg-dot-matrix-fade {
+  background-color: #f8fafc;
+  background-image:
+    radial-gradient(ellipse at center, transparent 0%, #f8fafc 85%),
+    radial-gradient(circle, #cbd5e1 1px, transparent 1px);
+  background-size: auto, 22px 22px;
+}

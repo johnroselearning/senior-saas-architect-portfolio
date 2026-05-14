@@ -1,12 +1,22 @@
 import { motion } from "motion/react";
-import { Sparkles } from "lucide-react";
+import { Sparkles, ArrowRight, Download } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 
 export default function Hero() {
   return (
-    <section className="relative min-h-[80vh] flex flex-col items-center justify-center pt-20 px-4 overflow-hidden bg-white">
-      {/* Soft Background Glow */}
-      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-emerald-200/40 rounded-full blur-[120px] pointer-events-none" />
+    <section className="relative min-h-[88vh] flex flex-col items-center justify-center pt-24 pb-16 px-4 overflow-hidden bg-dot-matrix">
+      {/* Soft Emerald Glow */}
+      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[560px] h-[560px] bg-emerald-200/40 rounded-full blur-[140px] pointer-events-none" />
+
+      {/* Top-left and bottom-right blueprint corner ticks */}
+      <div className="pointer-events-none absolute top-24 left-8 hidden md:flex flex-col gap-1 font-mono text-[10px] uppercase tracking-[0.3em] text-slate-400">
+        <span>SYS / 001</span>
+        <span className="h-px w-10 bg-slate-300" />
+      </div>
+      <div className="pointer-events-none absolute bottom-12 right-8 hidden md:flex flex-col items-end gap-1 font-mono text-[10px] uppercase tracking-[0.3em] text-slate-400">
+        <span className="h-px w-10 bg-slate-300" />
+        <span>BUILD · STABLE</span>
+      </div>
 
       <motion.div
         initial={{ opacity: 0, y: 20 }}
@@ -18,31 +28,42 @@ export default function Hero() {
           variant="outline"
           className="mb-6 border-emerald-500/40 text-emerald-700 bg-emerald-50 px-4 py-1 font-mono uppercase tracking-wider"
         >
-          <Sparkles className="w-3 h-3 mr-2" /> Senior Product Support Engineer
+          <Sparkles className="w-3 h-3 mr-2" /> Senior Software Engineer · SaaS Architect
         </Badge>
 
-        <h1 className="text-5xl md:text-7xl font-bold tracking-tight mb-6 leading-[1.1] text-slate-900">
-          Debugging <span className="text-gradient-emerald">GenAI</span> systems in production.
+        <h1 className="text-5xl md:text-7xl font-bold tracking-tight mb-6 leading-[1.05] text-slate-900">
+          Engineering Secure,{" "}
+          <span className="text-gradient-emerald">Agentic Systems</span>.
         </h1>
 
-        <p className="text-xl md:text-2xl text-slate-600 mb-4 max-w-2xl mx-auto font-sans leading-relaxed">
-          5+ years owning P0/P1 incidents across multi-tenant SaaS — now bringing the same rigour to{" "}
-          <span className="text-emerald-700 font-mono">LLM, RAG, and prompt-debugging</span> workflows.
+        <p className="text-lg md:text-xl text-slate-600 mb-10 max-w-3xl mx-auto leading-relaxed">
+          Senior Software Engineer specializing in{" "}
+          <span className="text-slate-900 font-medium">high-concurrency backends</span>,{" "}
+          <span className="text-slate-900 font-medium">Fintech security</span>, and{" "}
+          <span className="text-slate-900 font-medium">AI orchestration</span>.
         </p>
 
-        <p className="text-sm text-slate-500 font-mono uppercase tracking-widest">
-          Python · FastAPI · LangChain · AWS · Docker
+        <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center mb-10">
+          <a
+            href="#projects"
+            className="group inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg bg-emerald-600 text-white text-sm font-semibold shadow-[0_8px_24px_-8px_rgba(16,185,129,0.5)] hover:bg-emerald-700 hover:shadow-[0_10px_28px_-8px_rgba(16,185,129,0.6)] transition-all"
+          >
+            View Architecture
+            <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
+          </a>
+          <a
+            href="/resume.pdf"
+            className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg border border-slate-300 bg-white/60 backdrop-blur-sm text-slate-800 text-sm font-semibold hover:border-emerald-500/60 hover:text-emerald-700 hover:bg-white transition-all"
+          >
+            <Download className="w-4 h-4" />
+            Download Resume
+          </a>
+        </div>
+
+        <p className="text-xs text-slate-500 font-mono uppercase tracking-[0.3em]">
+          Go · FastAPI · LangGraph · Post-Quantum Crypto · AWS
         </p>
       </motion.div>
-
-      {/* Decorative grid */}
-      <div className="absolute bottom-10 left-0 right-0 flex justify-center opacity-30 pointer-events-none">
-        <div className="grid grid-cols-12 gap-4 w-full px-10">
-          {Array.from({ length: 12 }).map((_, i) => (
-            <div key={i} className="h-40 border-l border-slate-200" />
-          ))}
-        </div>
-      </div>
     </section>
   );
 }
