@@ -36,12 +36,24 @@ export default function Hero() {
           <span className="text-gradient-emerald">Agentic Systems</span>.
         </h1>
 
-        <p className="text-lg md:text-xl text-slate-600 mb-10 max-w-3xl mx-auto leading-relaxed">
+        <p className="text-lg md:text-xl text-slate-600 mb-6 max-w-3xl mx-auto leading-relaxed">
           Senior Software Engineer specializing in{" "}
           <span className="text-slate-900 font-medium">high-concurrency backends</span>,{" "}
           <span className="text-slate-900 font-medium">Fintech security</span>, and{" "}
           <span className="text-slate-900 font-medium">AI orchestration</span>.
         </p>
+
+        <blockquote className="relative mx-auto max-w-2xl mb-10 px-6">
+          <span className="absolute -top-3 left-0 text-4xl text-emerald-500/40 font-serif leading-none select-none">
+            &ldquo;
+          </span>
+          <p className="font-serif italic text-base md:text-lg text-slate-700 leading-relaxed">
+            Building world-class intelligence layers for a{" "}
+            <span className="text-emerald-700 not-italic font-medium">
+              resilient, autonomous future.
+            </span>
+          </p>
+        </blockquote>
 
         <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center mb-10">
           <a
@@ -52,7 +64,8 @@ export default function Hero() {
             <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
           </a>
           <a
-            href="/resume.pdf"
+            href="/johnrose.pdf"
+            download="JohnRose-Resume.pdf"
             className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg border border-slate-300 bg-white/60 backdrop-blur-sm text-slate-800 text-sm font-semibold hover:border-emerald-500/60 hover:text-emerald-700 hover:bg-white transition-all"
           >
             <Download className="w-4 h-4" />

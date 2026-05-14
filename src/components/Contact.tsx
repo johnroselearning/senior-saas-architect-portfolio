@@ -160,7 +160,7 @@ export default function Contact() {
   return (
     <section className="py-24 px-4 bg-emerald-600 text-white text-center" id="contact">
       <div className="max-w-4xl mx-auto">
-        <h2 className="text-4xl font-bold mb-6">Let's debug the hard problems together.</h2>
+        <h2 className="text-4xl font-bold mb-6">Let's solve the hard problems together.</h2>
         <p className="text-xl mb-12 opacity-90 font-medium">
           Open to senior support, GenAI debugging, and incident management roles.
         </p>
