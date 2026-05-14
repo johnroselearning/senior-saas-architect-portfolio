@@ -10,6 +10,7 @@ const experiences = [
     description:
       "Owning P0/P1 incident response and customer success for enterprise SaaS clients. Driving RCA culture and documentation standards across the support team.",
     achievements: [
+      "Owned the 24/7 critical on-call rotation for high-value US enterprise accounts, achieving a <30-minute Mean Time to Resolution (MTTR) on off-hours P0 system failures.",
       "Resolved a critical P0 system failure for a VIP enterprise client in 20 minutes by tracing a cascading API token expiry across multi-service logs.",
       "Sustained 100% quarterly CSAT and contributed to a 15% increase in annual contract renewals through proactive customer health checks.",
       "Spearheaded a knowledge-share initiative that raised documentation contributions by 30% and cut average resolution time by 15%.",
@@ -38,7 +39,7 @@ const experiences = [
     achievements: [
       "Built Python APIs and self-service features that reduced contact rates by 30% and let L1 resolve more issues independently.",
       "Shipped a trip-report self-service feature that eliminated manual support intervention and reduced related tickets by 30%.",
-      "Automated client onboarding by replicating parent client policies across 10 subsidiaries via a Python script.",
+      "Engineered an automated multi-level product configuration replication engine in under 3 hours, compressing a projected 3-month product management delivery roadmap into an immediate deployment.",
     ],
   },
 ];

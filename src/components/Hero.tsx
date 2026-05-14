@@ -4,7 +4,7 @@ import { Badge } from "@/components/ui/badge";
 
 export default function Hero() {
   return (
-    <section className="relative min-h-[88vh] flex flex-col items-center justify-center pt-24 pb-16 px-4 overflow-hidden bg-dot-matrix">
+    <section className="relative min-h-[72vh] flex flex-col items-center justify-center pt-24 pb-12 px-4 overflow-hidden bg-dot-matrix">
       {/* Soft Emerald Glow */}
       <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[560px] h-[560px] bg-emerald-200/40 rounded-full blur-[140px] pointer-events-none" />
 

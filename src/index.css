@@ -64,6 +64,10 @@
   * {
     @apply border-border;
   }
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 5rem; /* offset so anchored sections clear the fixed navbar */
+  }
   body {
     @apply bg-background text-foreground;
     font-feature-settings: "rlig" 1, "calt" 1;
@@ -93,4 +97,30 @@
     radial-gradient(ellipse at center, transparent 0%, #f8fafc 85%),
     radial-gradient(circle, #cbd5e1 1px, transparent 1px);
   background-size: auto, 22px 22px;
+}
+
+/* Soft pulsing emerald glow used on hero stat tiles to draw the eye */
+@keyframes stat-pulse-glow {
+  0%, 100% {
+    box-shadow:
+      0 0 0 1px rgba(16, 185, 129, 0.18),
+      0 0 12px 0 rgba(16, 185, 129, 0.18);
+    border-color: rgba(16, 185, 129, 0.25);
+  }
+  50% {
+    box-shadow:
+      0 0 0 1px rgba(16, 185, 129, 0.45),
+      0 0 28px 6px rgba(16, 185, 129, 0.35);
+    border-color: rgba(16, 185, 129, 0.55);
+  }
+}
+
+.animate-stat-pulse-glow {
+  animation: stat-pulse-glow 2.6s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-stat-pulse-glow {
+    animation: none;
+  }
 }

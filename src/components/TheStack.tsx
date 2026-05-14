@@ -79,7 +79,7 @@ const stackItems: {
     category: "Communication & Soft Skills",
     icon: Workflow,
     color: "text-teal-600",
-    caption: "C-suite to end-user, same clarity",
+    caption: "Direct advisory to client CEOs and core executive leadership during critical high-availability incidents.",
     skills: [
       { name: "Cross-Functional Collaboration", score: 95 },
       { name: "User Empathy & CSAT", score: 95 },
@@ -90,10 +90,11 @@ const stackItems: {
 ];
 
 const stats = [
-  { label: "Years in Support", value: "5+" },
+  { label: "Production Systems Ownership", value: "5+ Years" },
   { label: "Quarterly CSAT", value: "100%" },
   { label: "RCA Success Rate", value: "83%" },
-  { label: "Ticket Turnaround", value: "−95%" },
+  { label: "Off-Hours P0 MTTR", value: "< 30 Min" },
+  { label: "Roadmap Compression", value: "3 Months → 3 Hours", highlight: true },
 ];
 
 
@@ -151,14 +152,37 @@ export default function TheStack() {
         </div>
 
         {/* Outcomes grid */}
-        <div className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-4">
+        <div className="mt-16 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
           {stats.map((stat) => (
             <div
               key={stat.label}
-              className="p-5 bg-white border border-slate-200 rounded-lg flex flex-col items-center justify-center text-center"
+              className={
+                stat.highlight
+                  ? "relative p-5 bg-emerald-600 border border-emerald-600 rounded-lg flex flex-col items-center justify-center text-center shadow-[0_10px_24px_-12px_rgba(16,185,129,0.55)] col-span-2 md:col-span-1"
+                  : "p-5 bg-white border border-slate-200 rounded-lg flex flex-col items-center justify-center text-center"
+              }
             >
-              <p className="text-xs font-mono text-slate-500 uppercase mb-1 tracking-widest">{stat.label}</p>
-              <p className="text-2xl font-bold text-emerald-700">{stat.value}</p>
+              {stat.highlight && (
+                <span className="absolute top-2 right-2 w-1.5 h-1.5 rounded-full bg-emerald-200 animate-pulse" />
+              )}
+              <p
+                className={
+                  stat.highlight
+                    ? "text-[10px] font-mono text-emerald-50 uppercase mb-1.5 tracking-widest"
+                    : "text-xs font-mono text-slate-500 uppercase mb-1 tracking-widest"
+                }
+              >
+                {stat.label}
+              </p>
+              <p
+                className={
+                  stat.highlight
+                    ? "text-base md:text-lg font-bold text-white leading-tight"
+                    : "text-2xl font-bold text-emerald-700"
+                }
+              >
+                {stat.value}
+              </p>
             </div>
           ))}
         </div>

@@ -1,26 +1,26 @@
 import { motion } from "motion/react";
-import { Zap, ShieldAlert, Workflow, HeartHandshake, Sparkles, Compass, Target, Wrench } from "lucide-react";
+import { Zap, ShieldAlert, Workflow, MessagesSquare, Sparkles, Compass, Target, Wrench } from "lucide-react";
 
 const principles = [
   {
     icon: Zap,
-    title: "Ambiguity Decisiveness",
-    body: "Fast, high-stakes system decisions with incomplete data.",
+    title: "Constraint-Driven Innovation",
+    body: "The tightest constraints and highest pressures distill the noise out of a problem, rapidly revealing the most efficient engineering pathways.",
   },
   {
     icon: ShieldAlert,
     title: "Rapid Incident Mitigation",
-    body: "Prioritizing immediate severity reduction over analysis.",
+    body: "Prioritizing immediate severity reduction over analysis to protect live operations.",
+  },
+  {
+    icon: MessagesSquare,
+    title: "Executive-Level Transparency",
+    body: "Trusted by client CEOs and core top management to lead high-stakes technical communications during critical P0 incidents, translating severe engineering anomalies into clear, strategic business decisions.",
   },
   {
     icon: Workflow,
     title: "Zero-Friction Automation",
-    body: "Coding permanent systems, not temporary patches.",
-  },
-  {
-    icon: HeartHandshake,
-    title: "Empathy-Led Collaboration",
-    body: "Aligning engineering goals with user and team needs.",
+    body: "Coding permanent architectural systems instead of temporary patches.",
   },
 ];
 

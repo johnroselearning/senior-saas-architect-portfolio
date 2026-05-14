@@ -10,6 +10,7 @@ import IndependentProjects from "./components/IndependentProjects";
 import TechnicalDeepDive from "./components/TechnicalDeepDive";
 import TheStack from "./components/TheStack";
 import Experience from "./components/Experience";
+import OperationalBreakthroughs from "./components/OperationalBreakthroughs";
 import Philosophy from "./components/Philosophy";
 import Contact from "./components/Contact";
 import { Github, Linkedin, Mail } from "lucide-react";
@@ -21,6 +22,7 @@ export default function App() {
 
       <main>
         <Hero />
+        <OperationalBreakthroughs />
         <ProjectCards />
         <IndependentProjects />
         <TechnicalDeepDive />
