@@ -34,9 +34,17 @@ export function MermaidDiagram({ source }: { source: string }) {
         if (!cancelled) setSvg(svg);
       })
       .catch((err: unknown) => {
-        if (!cancelled) {
-          setError(err instanceof Error ? err.message : String(err));
+        if (cancelled) return;
+        const message = err instanceof Error ? err.message : String(err);
+        if (/dynamically imported module|Failed to fetch/i.test(message)) {
+          const RELOAD_FLAG = "chunk-reload-attempt";
+          if (!sessionStorage.getItem(RELOAD_FLAG)) {
+            sessionStorage.setItem(RELOAD_FLAG, "1");
+            window.location.reload();
+            return;
+          }
         }
+        setError(message);
       });
     return () => {
       cancelled = true;
