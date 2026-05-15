@@ -1,99 +1,113 @@
 import { motion } from "motion/react";
-import { Brain, Cloud, Code2, Database, LifeBuoy, Workflow } from "lucide-react";
+import {
+  Brain,
+  Cloud,
+  Code2,
+  Database,
+  GitBranch,
+  Activity,
+  Eye,
+  Layers,
+} from "lucide-react";
 
 type Skill = { name: string; score: number };
 
 const stackItems: {
   category: string;
+  layer: string;
   icon: typeof Code2;
   color: string;
   caption: string;
   skills: Skill[];
 }[] = [
   {
-    category: "Support & Incident Ops",
-    icon: LifeBuoy,
+    category: "Orchestration & Frameworks",
+    layer: "Agent Ops Layer 1",
+    icon: GitBranch,
     color: "text-emerald-600",
-    caption: "5+ years owning the SLA clock",
+    caption: "Graph-based agent orchestration & workflow automation",
     skills: [
-      { name: "P0 / P1 Triage", score: 95 },
-      { name: "Root Cause Analysis", score: 95 },
-      { name: "SLA & Ticket Lifecycle", score: 95 },
-      { name: "Jira / Confluence", score: 90 },
-      { name: "ITIL-aligned Processes", score: 85 },
+      { name: "LangGraph", score: 92 },
+      { name: "CrewAI", score: 82 },
+      { name: "n8n", score: 88 },
+      { name: "Custom State Machines", score: 85 },
+      { name: "LangChain", score: 78 },
     ],
   },
   {
-    category: "Programming, Cloud & APIs",
-    icon: Code2,
-    color: "text-blue-600",
-    caption: "Engineering automated infrastructure across distributed environments",
-    skills: [
-      { name: "Python", score: 90 },
-      { name: "REST APIs (Postman)", score: 90 },
-      { name: "FastAPI", score: 80 },
-      { name: "Bash / Linux", score: 80 },
-      { name: "JavaScript / React", score: 75 },
-      { name: "SQL", score: 75 },
-      { name: "Flask", score: 65 },
-    ],
-  },
-  {
-    category: "GenAI & LLM",
+    category: "Models & RAG",
+    layer: "Agent Ops Layer 2",
     icon: Brain,
     color: "text-purple-600",
-    caption: "ExploreMunnar.ai + ongoing upskilling",
+    caption: "LLM integration, prompt engineering & retrieval-augmented generation",
     skills: [
-      { name: "LLM Output Debugging", score: 80 },
-      { name: "Prompt Engineering", score: 80 },
-      { name: "RAG Architectures", score: 75 },
-      { name: "LangChain", score: 70 },
-      { name: "Embedding Models", score: 65 },
+      { name: "OpenAI API (GPT-4o)", score: 90 },
+      { name: "Claude / Anthropic", score: 82 },
+      { name: "Gemini (Flash & Pro)", score: 85 },
+      { name: "Vector DBs (Milvus, Pinecone)", score: 80 },
+      { name: "Embedding Models & RAG", score: 82 },
     ],
   },
   {
-    category: "Cloud & DevOps",
-    icon: Cloud,
+    category: "Backend & Execution",
+    layer: "Agent Ops Layer 3",
+    icon: Code2,
+    color: "text-blue-600",
+    caption: "High-concurrency agentic backend infrastructure",
+    skills: [
+      { name: "Python", score: 92 },
+      { name: "FastAPI", score: 88 },
+      { name: "Secure Sandbox Containers", score: 80 },
+      { name: "AWS (Lambda, ECS, S3)", score: 82 },
+      { name: "Docker & Kubernetes", score: 78 },
+    ],
+  },
+  {
+    category: "AgentOps & Observability",
+    layer: "Agent Ops Layer 4",
+    icon: Eye,
     color: "text-orange-600",
-    caption: "Serverless AWS deploys + container debugging",
+    caption: "Tracing, evaluation & continuous monitoring of agent systems",
     skills: [
-      { name: "AWS (Lambda, S3, CloudFront, EC2)", score: 80 },
-      { name: "Docker", score: 80 },
-      { name: "Kubernetes (pod/service debug)", score: 70 },
-      { name: "GCP", score: 60 },
-      { name: "CI/CD Basics", score: 60 },
-      { name: "Azure", score: 55 },
+      { name: "LangSmith", score: 88 },
+      { name: "Phoenix (Arize)", score: 78 },
+      { name: "OpenLLMetry", score: 72 },
+      { name: "Structured Logging & Alerts", score: 85 },
     ],
   },
   {
-    category: "Databases",
+    category: "Data & Storage",
+    layer: "Supporting Infrastructure",
     icon: Database,
     color: "text-rose-600",
-    caption: "Query, debug, and trace data flow",
+    caption: "Persistent state, vector retrieval & relational stores",
     skills: [
-      { name: "MongoDB", score: 75 },
-      { name: "MySQL", score: 75 },
+      { name: "MongoDB (Tenant State)", score: 82 },
+      { name: "PostgreSQL", score: 80 },
+      { name: "Redis (Agent Cache)", score: 85 },
+      { name: "MySQL", score: 72 },
     ],
   },
   {
-    category: "Communication & Soft Skills",
-    icon: Workflow,
+    category: "Integration & Delivery",
+    layer: "Supporting Infrastructure",
+    icon: Layers,
     color: "text-teal-600",
-    caption: "Direct advisory to client CEOs and core executive leadership during critical high-availability incidents.",
+    caption: "APIs, webhooks & cross-system agent communication channels",
     skills: [
-      { name: "Cross-Functional Collaboration", score: 95 },
-      { name: "User Empathy & CSAT", score: 95 },
-      { name: "Operating in Ambiguity", score: 90 },
-      { name: "Analytical Reasoning", score: 90 },
+      { name: "REST & Webhook APIs", score: 92 },
+      { name: "WhatsApp Business API", score: 85 },
+      { name: "CI/CD Pipelines", score: 72 },
+      { name: "Bash / Linux Scripting", score: 82 },
     ],
   },
 ];
 
 const stats = [
-  { label: "Production Systems Ownership", value: "5+ Years" },
-  { label: "Quarterly CSAT", value: "100%" },
-  { label: "RCA Success Rate", value: "83%" },
-  { label: "Off-Hours P0 MTTR", value: "< 30 Min" },
+  { label: "Production Agent Systems", value: "2 Live" },
+  { label: "Agent Decision Accuracy", value: ">92%" },
+  { label: "HITL Escalation Rate", value: "<8%" },
+  { label: "Agent MTTR (P0)", value: "< 30 Min" },
   { label: "Roadmap Compression", value: "3 Months → 3 Hours", highlight: true },
 ];
 
@@ -103,10 +117,13 @@ export default function TheStack() {
     <section className="py-24 bg-slate-50" id="stack">
       <div className="max-w-7xl mx-auto px-4">
         <div className="text-center mb-16">
-          <h2 className="text-3xl font-bold mb-4 text-slate-900">The Technical Ecosystem</h2>
+          <p className="text-xs font-mono uppercase tracking-[0.3em] text-emerald-700 mb-3 flex items-center justify-center gap-2">
+            <Activity className="w-3.5 h-3.5" /> Agent Stack Matrix
+          </p>
+          <h2 className="text-3xl font-bold mb-4 text-slate-900">The AgentOps Ecosystem</h2>
           <p className="text-slate-600 max-w-2xl mx-auto">
-            Self-rated proficiency across the stack — weighted by years of use and depth of production evidence on real
-            incidents and projects.
+            Proficiency across the full agentic stack — from graph orchestration frameworks and RAG
+            pipelines to production backends, observability tooling, and secure execution environments.
           </p>
         </div>
 
@@ -120,12 +137,15 @@ export default function TheStack() {
               transition={{ delay: index * 0.08 }}
               className="p-8 bg-white border border-slate-200 rounded-xl hover:border-emerald-500/40 hover:shadow-md transition-all"
             >
-              <div className="flex items-center gap-3 mb-2">
+              <div className="flex items-center gap-3 mb-1">
                 <div className={`p-2 rounded-lg bg-slate-50 border border-slate-200 ${item.color}`}>
                   <item.icon size={20} />
                 </div>
                 <h3 className="text-lg font-bold text-slate-900">{item.category}</h3>
               </div>
+              <p className="text-[10px] font-mono uppercase tracking-[0.2em] text-emerald-700 mb-1">
+                {item.layer}
+              </p>
               <p className="text-xs text-slate-500 font-mono uppercase tracking-wider mb-6">{item.caption}</p>
 
               <ul className="space-y-4">

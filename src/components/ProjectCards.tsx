@@ -47,108 +47,126 @@ type Project = {
 
 const projects: Project[] = [
   {
-    title: "Financial Sentinel",
-    tagline: "Fintech · Real-Time Risk",
+    title: "Sentinel",
+    tagline: "Fintech · Autonomous Risk Intelligence Agent",
     description:
-      "Real-time transaction security engine designed for <50ms latency using Go concurrency and FastAPI.",
-    tags: ["Go", "FastAPI", "Behavioral Biometrics", "Post-Quantum Cryptography"],
+      "A self-correcting, stateful fraud-detection agent powered by LangGraph and behavioral biometrics. Sentinel autonomously evaluates transaction events, executes ML-based risk tools, and mitigates threats in <50ms — without human intervention.",
+    tags: ["LangGraph", "n8n", "FastAPI", "Python", "Behavioral Biometrics", "Post-Quantum Cryptography", "Redis"],
     bullet:
-      "Developed dynamic risk scoring to intercept malicious UPI mandates and fraud before user execution.",
+      "Autonomous agent intercepts malicious UPI mandates and mule accounts in real-time by cycling through a risk-scoring graph: Observe → Score → Tool Call → Validate → Mitigate/Retry.",
     icon: Shield,
     accentIcons: [Lock, Activity],
-    badge: "P0 · Latency Critical",
+    badge: "Autonomous · <50ms Latency",
     deepDives: [
       {
-        title: "The Concurrency Challenge (<50ms Latency)",
+        title: "Stateful Agent Loop & Self-Correction",
         body:
-          "Separated the control plane from the data path. FastAPI handles management logic, while a dedicated Go-based Orchestrator manages the critical transaction pathway using concurrent goroutines to analyze streaming data in under 50ms.",
+          "Built on LangGraph's cyclic graph primitives — the agent enters an Observe → Evaluate → Tool Call → Validate loop. On a low-confidence score it retriggers the ML model with enriched context (device fingerprint + biometric delta) and retries before escalating or auto-blocking.",
         icon: Gauge,
       },
       {
-        title: "The Cryptographic & Biometric Moat",
+        title: "Behavioral Biometrics Tool Layer",
         body:
-          "Integrated Post-Quantum Cryptography (PQC) to future-proof stored financial records. Paired this with a Behavioral Biometrics layer that analyzes user interaction patterns to detect malicious UPI mandates and mule accounts.",
+          "The agent dispatches a dedicated Biometrics Tool that analyzes keystroke cadence, touch pressure, and swipe velocity against a stateful user baseline stored in Redis. Anomaly deltas above threshold are injected back into the agent's state graph as new evidence nodes.",
         icon: Lock,
       },
       {
-        title: "Data Consistency",
+        title: "n8n Workflow Orchestration & Audit",
         body:
-          "Engineered Python-based parallel data processing scripts to eliminate production SQL \"fan-out\" and data redundancy, ensuring clean data ingestion.",
+          "Automated remediation actions (block, soft-challenge, alert) are dispatched via n8n flows with full auditability. Each workflow node emits structured telemetry to LangSmith for trace-level observability into every agent decision path.",
         icon: Database,
       },
     ],
     diagram: `graph TD
-    Client[Mobile / Client App] -->|1. UPI Transaction Request| Gateway[API Gateway]
-    Gateway -->|2. High-Freq critical data path| GoOrch[Go Orchestrator]
-    Gateway -->|3. Management & Config| FastAPI[FastAPI Backend]
+    Client[Mobile / Client App] -->|UPI Transaction Event| Gateway[API Gateway]
+    Gateway -->|Enqueue Event| AgentEntry[Sentinel Agent Entry Node]
 
-    GoOrch -->|Real-time async check| BioAI[Behavioral Biometrics Model]
-    GoOrch -->|PQC Encryption| Crypto[Post-Quantum Crypto Module]
-    GoOrch -->|<50ms Read/Write| Redis[(Redis Cache)]
+    AgentEntry --> ObserveNode[OBSERVE: Parse Transaction Context]
+    ObserveNode --> ScoreNode[SCORE: Risk Scoring Engine]
 
-    FastAPI --> DB[(PostgreSQL Database)]
-    Crypto --> DB
+    ScoreNode -->|score < 0.4 — Low Risk| Approve[✅ Auto-Approve & Log]
+    ScoreNode -->|score 0.4–0.7 — Ambiguous| BioTool[TOOL CALL: Behavioral Biometrics]
+    ScoreNode -->|score > 0.7 — High Risk| BlockTool[TOOL CALL: Auto-Block + n8n Alert]
 
-    Legacy[Legacy Transaction Data] --> Scripts[Python Parallel Processing Scripts]
-    Scripts -->|Clean Deduplicated Logs| DB
+    BioTool --> ValidateNode{VALIDATE: Confidence Check}
+    ValidateNode -->|confidence OK| Approve
+    ValidateNode -->|confidence LOW — Retry| ScoreNode
 
-    style GoOrch fill:#f0fdf4,stroke:#16a34a,stroke-width:2px
-    style BioAI fill:#f0fdf4,stroke:#16a34a,stroke-width:2px
+    BlockTool --> StateStore[(Redis: Agent State Store)]
+    Approve --> StateStore
+
+    StateStore --> AuditLog[LangSmith Trace Audit]
+    StateStore --> DB[(PostgreSQL: Record Persist)]
+
+    style AgentEntry fill:#f0fdf4,stroke:#16a34a,stroke-width:2px
+    style ScoreNode fill:#f0fdf4,stroke:#16a34a,stroke-width:2px
+    style ValidateNode fill:#fef3c7,stroke:#b45309,stroke-width:2px
+    style BioTool fill:#eff6ff,stroke:#3b82f6,stroke-width:2px
+    style BlockTool fill:#fef2f2,stroke:#dc2626,stroke-width:2px
 `,
   },
   {
     title: "TriagePulse AI",
-    tagline: "Health-Tech SaaS · Multi-Tenant | TriagePulse AI",
+    tagline: "Health-Tech SaaS · Multi-Tenant Medical Triage Agent",
     description:
-      "A multi-tenant medical triage system utilizing a stateful multi-agent architecture.",
-    tags: ["LangGraph", "FastAPI", "WhatsApp Business API"],
+      "A production multi-tenant triage system built on a LangGraph orchestration kernel with asynchronous backend routing, multi-agent evaluation loops, and graceful Human-in-the-Loop (HITL) handoffs via WhatsApp Business API.",
+    tags: ["LangGraph", "FastAPI", "Python", "WhatsApp Business API", "Vector DB (Milvus)", "n8n", "LangSmith"],
     bullet:
-      "Built deterministic clinical workflows with automated PII scrubbing and Human-in-the-Loop safety guardrails.",
+      "Multi-agent eval loop routes patient symptoms through specialized Triage and Clarifier agents, with automatic HITL pause-and-alert for ambiguous ESI-level cases — all over the WhatsApp channel.",
     icon: Bot,
     accentIcons: [Cpu, Activity],
-    badge: "HIPAA-Aware · Agentic",
+    badge: "HIPAA-Aware · Multi-Agent HITL",
     deepDives: [
       {
-        title: "Stateful Multi-Agent Orchestration",
+        title: "Multi-Agent Evaluation Loop",
         body:
-          "Designed a non-linear workflow using LangGraph to manage complex clinical decision trees. The system uses cyclic graphs to loop back for clarifying patient symptoms while maintaining strict state persistence.",
+          "LangGraph orchestrates a graph of specialized agents: a SymptomClarifier agent probes for missing clinical signals, a TriageEvaluator agent scores ESI severity, and a RAG grounding node queries a Milvus vector DB of clinical protocols before any recommendation is emitted.",
         icon: GitBranch,
       },
       {
-        title: "Privacy & Safety Guardrails",
+        title: "Graceful HITL Handoff",
         body:
-          "Implemented an ingestion pipeline using spaCy NER to redact PII before LLM processing. Built a native Human-in-the-Loop (HITL) checkpointer to pause workflows and alert human doctors for ambiguous triage levels.",
+          "When the TriageEvaluator confidence falls below the ESI-2 threshold, the graph pauses at a LangGraph Interrupt checkpoint, serializes full conversation state to MongoDB, and triggers an n8n workflow that pings the on-call physician via WhatsApp with a structured clinical summary.",
         icon: ShieldCheck,
       },
       {
-        title: "Asynchronous Webhook Architecture",
+        title: "Async Webhook & PII Guardrails",
         body:
-          "Linked the WhatsApp Business API frontend to an asynchronous FastAPI backend to smoothly handle high-concurrency multi-tenant traffic.",
+          "FastAPI's async webhook layer decouples WhatsApp message ingestion from agent execution, enabling high-concurrency multi-tenant throughput. A spaCy NER scrubber redacts PII (PERSON, PHONE, GPE) before state is persisted or forwarded to any LLM call.",
         icon: MessageSquare,
       },
     ],
     diagram: `graph TD
-    Patient[Patient / WhatsApp Client] -->|1. Symptom Message| Webhook[WhatsApp Business API]
-    Webhook -->|2. Async Webhook| FastAPI[FastAPI Async Backend]
+    Patient[Patient — WhatsApp] -->|Symptom Message| Webhook[WhatsApp Business API Webhook]
+    Webhook -->|Async Enqueue| FastAPI[FastAPI Async Backend]
 
-    FastAPI -->|3. PII Redaction| NER[spaCy NER Pipeline]
-    NER -->|Sanitized Text| LangGraph[LangGraph Orchestrator]
+    FastAPI -->|PII Redaction Gate| Scrubber[spaCy NER Scrubber]
+    Scrubber -->|Sanitized State| GraphEntry[LangGraph Orchestrator Entry]
 
-    LangGraph -->|Decision Cycle| TriageAgent[Triage Agent]
-    LangGraph -->|Loop for Clarification| SymptomAgent[Symptom Clarifier Agent]
-    LangGraph -->|Ambiguous Case| HITL{Human-in-the-Loop Checkpoint}
+    GraphEntry --> ClarifierAgent[AGENT: Symptom Clarifier]
+    ClarifierAgent -->|Missing signals — loop back| GraphEntry
+    ClarifierAgent -->|Context complete| TriageAgent[AGENT: Triage Evaluator]
 
-    HITL -->|Pause + Alert| Doctor[Human Doctor Review]
-    HITL -->|Resume Workflow| LangGraph
+    TriageAgent -->|RAG grounding call| VectorDB[(Milvus: Clinical Protocol DB)]
+    VectorDB -->|Relevant protocol chunks| TriageAgent
 
-    LangGraph -->|Persistent State| Mongo[(MongoDB Tenant Store)]
-    TriageAgent -->|Final Decision| FastAPI
+    TriageAgent -->|confidence HIGH — ESI 3-5| Response[WhatsApp Response — Safe Guidance]
+    TriageAgent -->|confidence LOW — ESI 1-2| HITL{HITL Checkpoint — Pause Graph}
 
-    style LangGraph fill:#f0fdf4,stroke:#16a34a,stroke-width:2px
+    HITL -->|Serialize state| Mongo[(MongoDB: Tenant State Store)]
+    HITL -->|n8n Trigger| DoctorAlert[n8n Flow: Physician Alert — WhatsApp]
+    DoctorAlert -->|Doctor reviews & resumes| GraphEntry
+
+    GraphEntry --> LangSmith[LangSmith: Trace & Observability]
+
+    style GraphEntry fill:#f0fdf4,stroke:#16a34a,stroke-width:2px
+    style TriageAgent fill:#f0fdf4,stroke:#16a34a,stroke-width:2px
     style HITL fill:#fef3c7,stroke:#b45309,stroke-width:2px
+    style VectorDB fill:#eff6ff,stroke:#3b82f6,stroke-width:2px
+    style DoctorAlert fill:#fdf4ff,stroke:#9333ea,stroke-width:2px
 `,
     codeSnippet: {
-      label: "View Ingestion Middleware",
+      label: "View PII Scrubber Middleware",
       filename: "infrastructure/security/scrubber.py",
       source: `# infrastructure/security/scrubber.py
 import spacy
@@ -425,14 +443,14 @@ export default function ProjectCards() {
         <div className="mb-14 flex flex-col md:flex-row md:items-end md:justify-between gap-6">
           <div>
             <p className="text-xs font-mono uppercase tracking-[0.3em] text-emerald-700 mb-3 flex items-center gap-2">
-              <Rocket className="w-3.5 h-3.5" /> Primary Technical Focus
+              <Rocket className="w-3.5 h-3.5" /> Agent Systems Laboratory
             </p>
             <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-slate-900">
-              Core Infrastructure &amp; AI Solutions
+              Autonomous Agents &amp; Multi-Agent Architectures
             </h2>
           </div>
           <p className="text-slate-600 max-w-md text-sm leading-relaxed">
-            Production-grade systems where latency, safety, and concurrency are non-negotiable.
+            Production-grade agentic systems where stateful graph logic, cyclic self-correction loops, and Human-in-the-Loop handoffs are non-negotiable.
             Click any card to expand the architecture deep dive.
           </p>
         </div>

@@ -28,21 +28,22 @@ export default function Hero() {
           variant="outline"
           className="mb-6 border-emerald-500/40 text-emerald-700 bg-emerald-50 px-4 py-1 font-mono uppercase tracking-wider"
         >
-          <Sparkles className="w-3 h-3 mr-2" /> Senior Software Engineer · SaaS Architect
+          <Sparkles className="w-3 h-3 mr-2" /> Agentic AI Orchestrator · Systems Architect
         </Badge>
 
         <h1 className="text-5xl md:text-7xl font-bold tracking-tight mb-6 leading-[1.05] text-slate-900">
-          Engineering Secure,{" "}
-          <span className="text-gradient-emerald">Agentic Systems</span>.
+          Architecting{" "}
+          <span className="text-gradient-emerald">Autonomous Systems</span>{" "}
+          &amp; Multi-Agent Workflows.
         </h1>
 
         <p className="text-lg md:text-xl text-slate-600 mb-6 max-w-3xl mx-auto leading-relaxed">
-          Senior Engineer specializing in{" "}
-          <span className="text-slate-900 font-medium">high-concurrency backends</span>,{" "}
-          <span className="text-slate-900 font-medium">cloud infrastructure</span>, and{" "}
-          <span className="text-slate-900 font-medium">intelligent automation</span>. Building
-          world-class, resilient layers that resolve complex production anomalies before they
-          impact the user.
+          Specialising in{" "}
+          <span className="text-slate-900 font-medium">LangGraph &amp; n8n orchestration</span>,{" "}
+          <span className="text-slate-900 font-medium">RAG pipelines &amp; Vector DBs</span>, and{" "}
+          <span className="text-slate-900 font-medium">production-grade agentic backends</span>.
+          Building autonomous, self-correcting systems that detect anomalies, route decisions, and
+          execute tool chains — all without human intervention.
         </p>
 
         <blockquote className="relative mx-auto max-w-2xl mb-10 px-6">
@@ -50,10 +51,11 @@ export default function Hero() {
             &ldquo;
           </span>
           <p className="font-serif italic text-base md:text-lg text-slate-700 leading-relaxed">
-            Building world-class intelligence layers for a{" "}
+            Designing graph-based intelligence kernels where agents{" "}
             <span className="text-emerald-700 not-italic font-medium">
-              resilient, autonomous future.
-            </span>
+              plan, act, observe, and self-correct
+            </span>{" "}
+            — autonomously.
           </p>
         </blockquote>
 
@@ -76,7 +78,7 @@ export default function Hero() {
         </div>
 
         <p className="text-xs text-slate-500 font-mono uppercase tracking-[0.3em]">
-          Go · FastAPI · LangGraph · Post-Quantum Crypto · AWS
+          LangGraph · n8n · CrewAI · FastAPI · Vector DBs · LangSmith · AWS
         </p>
       </motion.div>
     </section>

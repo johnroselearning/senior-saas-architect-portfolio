@@ -72,7 +72,7 @@ export default function App() {
           </div>
 
           <p className="text-xs font-mono uppercase tracking-[0.3em] text-slate-500">
-            Built for performance and security.
+            Architecting autonomous systems for a resilient future.
           </p>
 
           <p className="text-[11px] font-mono text-slate-400">
